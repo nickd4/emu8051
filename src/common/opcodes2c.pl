@@ -908,7 +908,7 @@ for ($i = 0; $i < 256; $i++) {
 }
 print INST_DEF "};\n";
 print INST_DEF "#else\n";
-print INST_DEF "OPCODE_FP opcode_table[256];\n";
+print INST_DEF "extern OPCODE_FP opcode_table[256];\n";
 print INST_DEF "#endif\n\n\n";
 
 print INST_DEF "#endif /* INSTRUCTIONS_8051_H */\n";
