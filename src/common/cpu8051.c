@@ -24,6 +24,7 @@
 #include "options.h"
 #include "instructions_8051.h"
 
+#if !ALT_BACKEND
 extern struct options_t options;
 
 /* Check if the address is a breakpoint */
@@ -124,16 +125,19 @@ stop_point_is_defined(unsigned int address)
 	else
 		return false;
 }
+#endif
 
 void
 cpu8051_init(void)
 {
+#if !ALT_BACKEND
 	int id;
 
 	mem_init();
 
 	for (id = 0; id < GP_TIMERS_COUNT; id++)
 		gp_timer_reset(id);
+#endif
 
 	cpu8051.pc = 0;
 	cpu8051.clock = 0;
@@ -149,8 +153,10 @@ cpu8051_reset(void)
 	cpu8051.clock = 0;
 	cpu8051.active_priority = -1;
 
+#if !ALT_BACKEND
 	/* Clear IRAM and SFR. */
 	mem_clear(INT_MEM_ID);
+#endif
 
 	mem_sfr_write8(_P0_, 0xFF);
 	mem_sfr_write8(_P1_, 0xFF);
@@ -240,16 +246,20 @@ int
 cpu8051_exec(void)
 {
 	int i;
+#if !ALT_BACKEND
 	int rc;
+#endif
 	unsigned char opcode;
 	int insttiming;
 
+#if !ALT_BACKEND
 	/* Basic address check (may fail later if opcode has operands). */
 	rc = mem_check_address(PGM_MEM_ID, cpu8051.pc, DISPLAY_ERROR_NO);
 	if (!rc) {
 		log_err("Trying to run past program memory limit");
 		return false; /* Error */
 	}
+#endif
 
 	opcode = mem_read8(PGM_MEM_ID, cpu8051.pc);
 	cpu8051.pc++;
@@ -261,11 +271,15 @@ cpu8051_exec(void)
 	 */
 	psw_compute_parity_bit();
 
+#if !ALT_BACKEND
 	gp_timers_increment(insttiming);
+#endif
 
 	for (i = 0; i < insttiming; i++) {
 		cpu8051_check_interrupts();
+#if !ALT_BACKEND
 		timers_check();
+#endif
 		cpu8051.clock++;
 	}
 
@@ -300,6 +314,7 @@ cpu8051_run(int instr_count, int (*interface_stop)(void))
 				log_info("Number of instructions reached");
 			}
 
+#if !ALT_BACKEND
 			if (breakpoint_is_defined(cpu8051.pc)) {
 				run = false;
 				breakpoint_hit = true;
@@ -310,6 +325,7 @@ cpu8051_run(int instr_count, int (*interface_stop)(void))
 				run = false;
 				log_info("Stoppoint hit at %.4X", cpu8051.pc);
 			}
+#endif
 
 			if (interface_stop != NULL) {
 				if (interface_stop()) {
@@ -323,6 +339,7 @@ cpu8051_run(int instr_count, int (*interface_stop)(void))
 	return breakpoint_hit;
 }
 
+#if !ALT_BACKEND
 /*
  * Addressing modes defined in the order as they appear in disasm.h
  * from table argstext[]
@@ -557,3 +574,4 @@ cpu8051_disasm(unsigned int address, char *text)
 
 	return inst_size;
 }
+#endif

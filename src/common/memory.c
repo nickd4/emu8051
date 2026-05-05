@@ -18,6 +18,7 @@
 #include "memory.h"
 #include "options.h"
 
+#if !ALT_BACKEND
 struct mem_infos_t {
 	int size;
 	int max_size;
@@ -75,6 +76,7 @@ mem_check_address(enum mem_id_t id, unsigned long address, int display_error)
 		return true;
 	}
 }
+#endif
 
 void
 mem_convert_bit_address(uint8_t bit_address, uint8_t *byte_address,
@@ -91,6 +93,7 @@ mem_convert_bit_address(uint8_t bit_address, uint8_t *byte_address,
 	}
 }
 
+#if !ALT_BACKEND
 uint8_t *
 mem_getbuf(enum mem_id_t id, unsigned long address)
 {
@@ -115,6 +118,7 @@ mem_write8(enum mem_id_t id, unsigned long address, uint8_t value)
 		mem_infos[id].buf[address] = value;
 	}
 }
+#endif
 
 /* Write with a direct addressing mode at Address the new Value */
 void
@@ -165,6 +169,7 @@ mem_sfr_write_dptr(uint16_t value)
 	mem_write8(INT_MEM_ID, _DPTRLOW_, (uint8_t) value);
 }
 
+#if !ALT_BACKEND
 uint8_t
 mem_read8(enum mem_id_t id, unsigned long address)
 {
@@ -177,6 +182,7 @@ mem_read8(enum mem_id_t id, unsigned long address)
 		return mem_infos[id].buf[address];
 	}
 }
+#endif
 
 /* Read with a direct addressing mode at Address */
 unsigned char
@@ -291,6 +297,7 @@ pgm_read_addr16(uint16_t base)
 	return addr;
 }
 
+#if !ALT_BACKEND
 /* Dump memory */
 void
 mem_dump(unsigned int address, int size, enum mem_id_t id)
@@ -338,3 +345,4 @@ mem_dump(unsigned int address, int size, enum mem_id_t id)
 		printf("\n");
 	}
 }
+#endif

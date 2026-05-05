@@ -28,6 +28,9 @@ enum mem_id_t {
 	PGM_MEM_ID,
 	INT_MEM_ID,
 	EXT_MEM_ID,
+#if ALT_BACKEND
+	XRAM_MEM_ID,
+#endif
 	MEM_ID_COUNT
 };
 

@@ -3156,7 +3156,11 @@ int
 cpu8051_OP_E0(void)
 {
 	unsigned char destination = mem_read_direct( _ACC_ );
+#if ALT_BACKEND
+	unsigned char source = mem_read8(XRAM_MEM_ID, mem_sfr_read_dptr());
+#else
 	unsigned char source = mem_read_indirect(mem_sfr_read_dptr());
+#endif
 	destination = source;
 	mem_write_direct( _ACC_, destination );
 	return 2;
@@ -3181,7 +3185,11 @@ int
 cpu8051_OP_E2(void)
 {
 	unsigned char destination = mem_read_direct( _ACC_ );
+#if ALT_BACKEND
+	unsigned char source = mem_read8(XRAM_MEM_ID, mem_read_direct(BANKPSW + _R0_) | (mem_read_direct(_P2_) << 8));
+#else
 	unsigned char source = mem_read_indirect ( mem_read_direct( BANKPSW + _R0_ ) );
+#endif
 	destination = source;
 	mem_write_direct( _ACC_, destination );
 	return 2;
@@ -3194,7 +3202,11 @@ int
 cpu8051_OP_E3(void)
 {
 	unsigned char destination = mem_read_direct( _ACC_ );
+#if ALT_BACKEND
+	unsigned char source = mem_read8(XRAM_MEM_ID, mem_read_direct(BANKPSW + _R1_) | (mem_read_direct(_P2_) << 8));
+#else
 	unsigned char source = mem_read_indirect ( mem_read_direct( BANKPSW + _R1_ ) );
+#endif
 	destination = source;
 	mem_write_direct( _ACC_, destination );
 	return 2;
@@ -3365,7 +3377,11 @@ cpu8051_OP_F0(void)
 	unsigned char destination = mem_read_indirect(mem_sfr_read_dptr());
 	unsigned char source = mem_read_direct( _ACC_ );
 	destination = source;
+#if ALT_BACKEND
+	mem_write8(XRAM_MEM_ID, mem_sfr_read_dptr(), destination);
+#else
 	mem_write_indirect(mem_sfr_read_dptr(), destination);
+#endif
 	return 2;
 }
 
@@ -3391,7 +3407,11 @@ cpu8051_OP_F2(void)
 	unsigned char destination = mem_read_indirect ( mem_read_direct( BANKPSW + _R0_ ) );
 	unsigned char source = mem_read_direct( _ACC_ );
 	destination = source;
+#if ALT_BACKEND
+	mem_write8(XRAM_MEM_ID, mem_read_direct(BANKPSW + _R0_) | (mem_read_direct(_P2_) << 8), destination);
+#else
 	mem_write_indirect( mem_read_direct( BANKPSW + _R0_ ), destination );
+#endif
 	return 2;
 }
 
@@ -3404,7 +3424,11 @@ cpu8051_OP_F3(void)
 	unsigned char destination = mem_read_indirect ( mem_read_direct( BANKPSW + _R1_ ) );
 	unsigned char source = mem_read_direct( _ACC_ );
 	destination = source;
+#if ALT_BACKEND
+	mem_write8(XRAM_MEM_ID, mem_read_direct(BANKPSW + _R1_) | (mem_read_direct(_P2_) << 8), destination);
+#else
 	mem_write_indirect( mem_read_direct( BANKPSW + _R1_ ), destination );
+#endif
 	return 2;
 }
 

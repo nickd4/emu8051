@@ -17,6 +17,13 @@
 
 #include "common.h"
 
+#if ALT_BACKEND
+#define log_debug(...) fprintf(stderr, __VA_ARGS__)
+#define log_info(...) fprintf(stderr, __VA_ARGS__)
+#define log_warn(...) fprintf(stderr, __VA_ARGS__)
+#define log_err(...) fprintf(stderr, __VA_ARGS__)
+#define log_fail(...) do {fprintf(stderr, __VA_ARGS__); abort();} while (1)
+#else
 enum LOG_LEVEL {
 	LOG_LEVEL_ERR = 0, /* Display only errors */
 	LOG_LEVEL_WARN,    /* Display warnings */
@@ -39,5 +46,6 @@ log_err(const char *format, ...);
 /* Log error message and exits with error code. */
 void
 log_fail(const char *format, ...);
+#endif
 
 #endif /* LOG_H */
