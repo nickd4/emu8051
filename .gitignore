@@ -23,13 +23,5 @@ stamp-h1
 /m4/ltversion.m4
 /m4/lt~obsolete.m4
 /src/cli/emu8051-cli
-/src/cli/parser.c
-/src/cli/parser.h
-/src/cli/scanner.c
-/src/cli/scanner.h
-/src/common/instructions_8051.c
-/src/common/instructions_8051.h
 /src/common/libemu8051.a
-/src/common/opcodes.c
-/src/common/opcodes.h
 /src/gtk/emu8051-gtk
