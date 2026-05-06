@@ -1968,9 +1968,19 @@ cpu8051_OP_94(void)
 	psw_clr_ov();
 	if ( destination < ( source + carryflag ) ) {
 	  psw_set_cy();
+#if 1
+	  if ((destination & 0x7F) >= ((source & 0x7F) + carryflag))  psw_set_ov();
+#else
 	  if ((destination & 0x7F) > ((source + carryflag) & 0x7F))  psw_set_ov();
-	} else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
+#endif
+	}
+#if 1
+	else if ((destination & 0x7F) < ((source & 0x7F) + carryflag))   psw_set_ov();
+	if ((destination & 0x0F) < ((source & 0x0F) + carryflag))   psw_set_ac();
+#else
+	else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
 	if ((destination & 0x0F) < ((source + carryflag) & 0x0F))   psw_set_ac();
+#endif
 	destination -= source + carryflag;
 	mem_write_direct( _ACC_, destination );
 	return 1;
@@ -1991,9 +2001,19 @@ cpu8051_OP_95(void)
 	psw_clr_ov();
 	if ( destination < ( source + carryflag ) ) {
 	  psw_set_cy();
+#if 1
+	  if ((destination & 0x7F) >= ((source & 0x7F) + carryflag))  psw_set_ov();
+#else
 	  if ((destination & 0x7F) > ((source + carryflag) & 0x7F))  psw_set_ov();
-	} else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
+#endif
+	}
+#if 1
+	else if ((destination & 0x7F) < ((source & 0x7F) + carryflag))   psw_set_ov();
+	if ((destination & 0x0F) < ((source & 0x0F) + carryflag))   psw_set_ac();
+#else
+	else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
 	if ((destination & 0x0F) < ((source + carryflag) & 0x0F))   psw_set_ac();
+#endif
 	destination -= source + carryflag;
 	mem_write_direct( _ACC_, destination );
 	return 1;
@@ -2013,9 +2033,19 @@ cpu8051_OP_96(void)
 	psw_clr_ov();
 	if ( destination < ( source + carryflag ) ) {
 	  psw_set_cy();
+#if 1
+	  if ((destination & 0x7F) >= ((source & 0x7F) + carryflag))  psw_set_ov();
+#else
 	  if ((destination & 0x7F) > ((source + carryflag) & 0x7F))  psw_set_ov();
-	} else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
+#endif
+	}
+#if 1
+	else if ((destination & 0x7F) < ((source & 0x7F) + carryflag))   psw_set_ov();
+	if ((destination & 0x0F) < ((source & 0x0F) + carryflag))   psw_set_ac();
+#else
+	else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
 	if ((destination & 0x0F) < ((source + carryflag) & 0x0F))   psw_set_ac();
+#endif
 	destination -= source + carryflag;
 	mem_write_direct( _ACC_, destination );
 	return 1;
@@ -2035,9 +2065,19 @@ cpu8051_OP_97(void)
 	psw_clr_ov();
 	if ( destination < ( source + carryflag ) ) {
 	  psw_set_cy();
+#if 1
+	  if ((destination & 0x7F) >= ((source & 0x7F) + carryflag))  psw_set_ov();
+#else
 	  if ((destination & 0x7F) > ((source + carryflag) & 0x7F))  psw_set_ov();
-	} else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
+#endif
+	}
+#if 1
+	else if ((destination & 0x7F) < ((source & 0x7F) + carryflag))   psw_set_ov();
+	if ((destination & 0x0F) < ((source & 0x0F) + carryflag))   psw_set_ac();
+#else
+	else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
 	if ((destination & 0x0F) < ((source + carryflag) & 0x0F))   psw_set_ac();
+#endif
 	destination -= source + carryflag;
 	mem_write_direct( _ACC_, destination );
 	return 1;
@@ -2057,9 +2097,19 @@ cpu8051_OP_98(void)
 	psw_clr_ov();
 	if ( destination < ( source + carryflag ) ) {
 	  psw_set_cy();
+#if 1
+	  if ((destination & 0x7F) >= ((source & 0x7F) + carryflag))  psw_set_ov();
+#else
 	  if ((destination & 0x7F) > ((source + carryflag) & 0x7F))  psw_set_ov();
-	} else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
+#endif
+	}
+#if 1
+	else if ((destination & 0x7F) < ((source & 0x7F) + carryflag))   psw_set_ov();
+	if ((destination & 0x0F) < ((source & 0x0F) + carryflag))   psw_set_ac();
+#else
+	else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
 	if ((destination & 0x0F) < ((source + carryflag) & 0x0F))   psw_set_ac();
+#endif
 	destination -= source + carryflag;
 	mem_write_direct( _ACC_, destination );
 	return 1;
@@ -2079,9 +2129,19 @@ cpu8051_OP_99(void)
 	psw_clr_ov();
 	if ( destination < ( source + carryflag ) ) {
 	  psw_set_cy();
+#if 1
+	  if ((destination & 0x7F) >= ((source & 0x7F) + carryflag))  psw_set_ov();
+#else
 	  if ((destination & 0x7F) > ((source + carryflag) & 0x7F))  psw_set_ov();
-	} else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
+#endif
+	}
+#if 1
+	else if ((destination & 0x7F) < ((source & 0x7F) + carryflag))   psw_set_ov();
+	if ((destination & 0x0F) < ((source & 0x0F) + carryflag))   psw_set_ac();
+#else
+	else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
 	if ((destination & 0x0F) < ((source + carryflag) & 0x0F))   psw_set_ac();
+#endif
 	destination -= source + carryflag;
 	mem_write_direct( _ACC_, destination );
 	return 1;
@@ -2101,9 +2161,19 @@ cpu8051_OP_9A(void)
 	psw_clr_ov();
 	if ( destination < ( source + carryflag ) ) {
 	  psw_set_cy();
+#if 1
+	  if ((destination & 0x7F) >= ((source & 0x7F) + carryflag))  psw_set_ov();
+#else
 	  if ((destination & 0x7F) > ((source + carryflag) & 0x7F))  psw_set_ov();
-	} else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
+#endif
+	}
+#if 1
+	else if ((destination & 0x7F) < ((source & 0x7F) + carryflag))   psw_set_ov();
+	if ((destination & 0x0F) < ((source & 0x0F) + carryflag))   psw_set_ac();
+#else
+	else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
 	if ((destination & 0x0F) < ((source + carryflag) & 0x0F))   psw_set_ac();
+#endif
 	destination -= source + carryflag;
 	mem_write_direct( _ACC_, destination );
 	return 1;
@@ -2123,9 +2193,19 @@ cpu8051_OP_9B(void)
 	psw_clr_ov();
 	if ( destination < ( source + carryflag ) ) {
 	  psw_set_cy();
+#if 1
+	  if ((destination & 0x7F) >= ((source & 0x7F) + carryflag))  psw_set_ov();
+#else
 	  if ((destination & 0x7F) > ((source + carryflag) & 0x7F))  psw_set_ov();
-	} else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
+#endif
+	}
+#if 1
+	else if ((destination & 0x7F) < ((source & 0x7F) + carryflag))   psw_set_ov();
+	if ((destination & 0x0F) < ((source & 0x0F) + carryflag))   psw_set_ac();
+#else
+	else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
 	if ((destination & 0x0F) < ((source + carryflag) & 0x0F))   psw_set_ac();
+#endif
 	destination -= source + carryflag;
 	mem_write_direct( _ACC_, destination );
 	return 1;
@@ -2145,9 +2225,19 @@ cpu8051_OP_9C(void)
 	psw_clr_ov();
 	if ( destination < ( source + carryflag ) ) {
 	  psw_set_cy();
+#if 1
+	  if ((destination & 0x7F) >= ((source & 0x7F) + carryflag))  psw_set_ov();
+#else
 	  if ((destination & 0x7F) > ((source + carryflag) & 0x7F))  psw_set_ov();
-	} else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
+#endif
+	}
+#if 1
+	else if ((destination & 0x7F) < ((source & 0x7F) + carryflag))   psw_set_ov();
+	if ((destination & 0x0F) < ((source & 0x0F) + carryflag))   psw_set_ac();
+#else
+	else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
 	if ((destination & 0x0F) < ((source + carryflag) & 0x0F))   psw_set_ac();
+#endif
 	destination -= source + carryflag;
 	mem_write_direct( _ACC_, destination );
 	return 1;
@@ -2167,9 +2257,19 @@ cpu8051_OP_9D(void)
 	psw_clr_ov();
 	if ( destination < ( source + carryflag ) ) {
 	  psw_set_cy();
+#if 1
+	  if ((destination & 0x7F) >= ((source & 0x7F) + carryflag))  psw_set_ov();
+#else
 	  if ((destination & 0x7F) > ((source + carryflag) & 0x7F))  psw_set_ov();
-	} else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
+#endif
+	}
+#if 1
+	else if ((destination & 0x7F) < ((source & 0x7F) + carryflag))   psw_set_ov();
+	if ((destination & 0x0F) < ((source & 0x0F) + carryflag))   psw_set_ac();
+#else
+	else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
 	if ((destination & 0x0F) < ((source + carryflag) & 0x0F))   psw_set_ac();
+#endif
 	destination -= source + carryflag;
 	mem_write_direct( _ACC_, destination );
 	return 1;
@@ -2189,9 +2289,19 @@ cpu8051_OP_9E(void)
 	psw_clr_ov();
 	if ( destination < ( source + carryflag ) ) {
 	  psw_set_cy();
+#if 1
+	  if ((destination & 0x7F) >= ((source & 0x7F) + carryflag))  psw_set_ov();
+#else
 	  if ((destination & 0x7F) > ((source + carryflag) & 0x7F))  psw_set_ov();
-	} else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
+#endif
+	}
+#if 1
+	else if ((destination & 0x7F) < ((source & 0x7F) + carryflag))   psw_set_ov();
+	if ((destination & 0x0F) < ((source & 0x0F) + carryflag))   psw_set_ac();
+#else
+	else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
 	if ((destination & 0x0F) < ((source + carryflag) & 0x0F))   psw_set_ac();
+#endif
 	destination -= source + carryflag;
 	mem_write_direct( _ACC_, destination );
 	return 1;
@@ -2211,9 +2321,19 @@ cpu8051_OP_9F(void)
 	psw_clr_ov();
 	if ( destination < ( source + carryflag ) ) {
 	  psw_set_cy();
+#if 1
+	  if ((destination & 0x7F) >= ((source & 0x7F) + carryflag))  psw_set_ov();
+#else
 	  if ((destination & 0x7F) > ((source + carryflag) & 0x7F))  psw_set_ov();
-	} else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
+#endif
+	}
+#if 1
+	else if ((destination & 0x7F) < ((source & 0x7F) + carryflag))   psw_set_ov();
+	if ((destination & 0x0F) < ((source & 0x0F) + carryflag))   psw_set_ac();
+#else
+	else if ((destination & 0x7F) < ((source + carryflag) & 0x7F))   psw_set_ov();
 	if ((destination & 0x0F) < ((source + carryflag) & 0x0F))   psw_set_ac();
+#endif
 	destination -= source + carryflag;
 	mem_write_direct( _ACC_, destination );
 	return 1;
